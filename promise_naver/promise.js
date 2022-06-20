@@ -45,7 +45,7 @@ const searchToName = (name) => {
     // map으로 특정 값이 있는가 판단 있으면 값을 extends
     persons.map((person) => {
       // '정확히 일치'가 아닌 '포함' 판단을 위해 indexOf 사용
-      if (person.name.indexOf(name) != -1) {
+      if (person.name.indexOf(name) === 0) {
         data = data.concat(person.likedBrand);
       }
     });
@@ -72,7 +72,7 @@ const searchToNameGender = (name, gender) => {
   let data = [];
   return new Promise((resolve, reject) => {
     persons.map((person) => {
-      if (person.name.indexOf(name) != -1 && person.gender === gender)
+      if (person.name.indexOf(name) === 0 && person.gender === gender)
         data = data.concat(person.likedBrand);
     });
     if (data.length > 0) resolve(data);
