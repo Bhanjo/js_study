@@ -28,7 +28,7 @@
 
 - API: https://jsonplaceholder.typicode.com/comments
 - postId가 3 혹은 5인 comment의 email을 출력해라
-- postId 내림 차순으로 정렬한다. 만약, postId가 같다면 2차 정렬 기준으로 id를 사용한다.
+- postId 내림 차순으로 정렬한다. 만약, postId가 같다면 id를 오름차순으로 2차 정렬한다.
 - async-await을 반드시 사용해라
 
 #### 주의사항
@@ -56,6 +56,17 @@
 - 추가 함수 작성은 가능하다.
 - getEmails에서는 파라미터 두 개만 받는다. (id2, id3)
 - 최종 결과는 문제1과 문제2를 합한 하나의 배열로 출력한다.
+- 만약,Cannot use import statement outside a module과 같은 에러가 발생한다면 package.json에 아래의 내용을 추가한다.
+
+```
+{
+  "name": "fetch-practice",
+  "version": "0.0.0",
+  "type": "module",
+  // 이미 있던 내용을 추가하세요
+}
+
+```
 
 #### 결과
 
