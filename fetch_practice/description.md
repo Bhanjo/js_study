@@ -34,8 +34,12 @@
 #### 주의사항
 
 - 시작 전 문제 폴더 내에서 `yarn install node-fetch`를 실행해 패키지를 설치한다.
-- API가 제공하는 검색 조건은 사용하지 않는다. (예: https://~/comments?postId=1)
+- API가 제공하는 검색 조건을 사용한다. (예: https://~/comments?postId=1)
+  - 단, 문제2의 경우 다중 조건을 사용하지 않고 각각 데이터 패치한다. (다중조건 사용시 불합격)
+  - HTTP 메서드는 'GET' 요청이다.
 - comments는 500개다.
+- comments는 postId 기준 오름차순 정렬이 되어 있다.
+- postId가 동일할 시 id 기준 오름차순 정렬이 되어있다.
 - id는 중복된 값이 주어지지 않는다.
 - API 구조는 다음과 같다.
 
@@ -114,10 +118,12 @@ import fetch from "node-fetch";
 const API_URL = "https://jsonplaceholder.typicode.com/comments";
 const ans = [];
 
+// API 호출해 데이터 패치
 async function getNames(id) {
   // id에 해당하는 name 패치
 }
 
+// API 호출해 데이터 패치
 async function getEmails(id1, id2) {
   // id1, id2에 맞는 email 패치
 }
