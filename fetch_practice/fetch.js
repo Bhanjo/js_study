@@ -4,10 +4,8 @@ const ans = [];
 
 // API 호출해 값(json) 반환
 async function fetcher(id) {
-  const fetchs = await fetch(`${API_URL}?postId=${id}`).then((res) =>
-    res.json()
-  );
-  return fetchs;
+  const fetchs = await fetch(`${API_URL}?postId=${id}`);
+  return fetchs.json();
 }
 
 // 이름 얻기
@@ -22,8 +20,10 @@ async function getEmails(id1, id2) {
   const maxId = id1 >= id2 ? id1 : id2;
   const minId = id1 < id2 ? id1 : id2;
 
-  await fetcher(maxId).then((res) => (datas = datas.concat(res)));
-  await fetcher(minId).then((res) => (datas = datas.concat(res)));
+  const maxIdData = await fetcher(maxId);
+  datas = datas.concat(maxIdData);
+  const minIdData = await fetcher(minId);
+  datas = datas.concat(minIdData);
 
   return datas;
 }
@@ -43,13 +43,11 @@ function filterData(json, condition) {
 
 const getData = async (id1, id2, id3) => {
   let ans = [];
-  await getNames(id1).then(
-    (json) => (ans = ans.concat(filterData(json, "name")))
-  );
+  const names = await getNames(id1);
+  ans = ans.concat(filterData(names, "name"));
 
-  await getEmails(id2, id3).then(
-    (json) => (ans = ans.concat(filterData(json, "email")))
-  );
+  const emails = await getEmails(id2, id3);
+  ans = ans.concat(filterData(emails, "email"));
 
   return ans;
 };
