@@ -89,22 +89,19 @@ const filterData = (datas) => {
 };
 
 // 데이터 찾기
-const findPerson = (name, gender) => {
+const findPerson = async (name, gender) => {
   let personData = [];
 
   // 입력받은 값에 따라 함수 실행
   if (name && !gender) {
-    searchToName(name).then(function (res) {
-      personData.push(filterData(res));
-    });
+    const searchNameData = await searchToName(name);
+    personData.push(filterData(searchNameData));
   } else if (!name && gender) {
-    searchToGender(gender).then(function (res) {
-      personData.push(filterData(res));
-    });
+    const searchGenderData = await searchToGender(gender);
+    personData.push(filterData(searchGenderData));
   } else {
-    searchToNameGender(name, gender).then(function (res) {
-      personData.push(filterData(res));
-    });
+    const searchBothData = await searchToNameGender(name, gender);
+    personData.push(filterData(searchBothData));
   }
   return personData;
 };
@@ -145,6 +142,6 @@ getData("han", "M").then(function (data) {
 });
 
 // case 6
-getData("han", "W").then(function (data) {
-  console.log(data[0]);
-});
+// getData("han", "W").then(function (data) {
+//   console.log(data[0]);
+// });
